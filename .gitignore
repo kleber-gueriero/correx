@@ -24,3 +24,7 @@ correx-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# <Project specifics>
+.env
+# </Project specifics>
