@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  correx:
+    image: correx:0.0.1
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /opt/app
+    volumes:
+      - .:/opt/app
+      - correx_deps:/opt/app/deps
+      - correx_build:/opt/app/_build
+    command: bash
+
+volumes:
+  correx_deps:
+  correx_build:
