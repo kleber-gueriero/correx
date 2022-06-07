@@ -13,7 +13,8 @@ defmodule Correx.MixProject do
       name: "Correx",
       source_url: @source_url,
       description: "Correx is a client for Brazilian's shipping carrier \"Correios\"",
-      package: package()
+      package: package(),
+      docs: docs()
     ]
   end
 
@@ -27,6 +28,7 @@ defmodule Correx.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:ex_doc, "~> 0.27", only: :dev, runtime: false}
     ]
   end
 
@@ -38,6 +40,16 @@ defmodule Correx.MixProject do
         GitHub: @source_url,
         Changelog: "#{@source_url}/blob/master/CHANGELOG.md"
       }
+    ]
+  end
+
+  defp docs do
+    [
+      source_ref: "v#{@version}",
+      main: "readme",
+      extras: [
+        "README.md",
+      ],
     ]
   end
 end
