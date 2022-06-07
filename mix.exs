@@ -1,13 +1,19 @@
 defmodule Correx.MixProject do
   use Mix.Project
 
+  @source_url "https://github.com/kleber-gueriero/correx"
+  @version "0.1.0"
   def project do
     [
       app: :correx,
-      version: "0.1.0",
+      version: @version,
       elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      name: "Correx",
+      source_url: @source_url,
+      description: "Correx is a client for Brazilian's shipping carrier \"Correios\"",
+      package: package()
     ]
   end
 
@@ -21,8 +27,17 @@ defmodule Correx.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+    ]
+  end
+
+  defp package do
+    [
+      licenses: ["MIT"],
+      description: "Brazilian's Correios (non-official) client for Elixir",
+      links: %{
+        GitHub: @source_url,
+        Changelog: "#{@source_url}/blob/master/CHANGELOG.md"
+      }
     ]
   end
 end
