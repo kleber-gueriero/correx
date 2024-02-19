@@ -14,7 +14,11 @@ defmodule Correx.MixProject do
       source_url: @source_url,
       description: "Correx is a client for Brazilian's shipping carrier \"Correios\"",
       package: package(),
-      docs: docs()
+      docs: docs(),
+      dialyzer: [
+        plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
+        flags: ~w[underspecs overspecs race_conditions error_handling unmatched_returns]a
+      ]
     ]
   end
 
@@ -28,7 +32,13 @@ defmodule Correx.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ex_doc, "~> 0.27", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.27", only: :dev, runtime: false},
+      {:tesla, "~> 1.4"},
+      {:finch, "~> 0.8.0"},
+      {:sweet_xml, "~> 0.7.1"},
+      {:bypass, "~> 2.1", only: :test},
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
     ]
   end
 

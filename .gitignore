@@ -27,4 +27,6 @@ correx-*.tar
 
 # <Project specifics>
 .env
+/priv/plts/*.plt
+/priv/plts/*.plt.hash
 # </Project specifics>
