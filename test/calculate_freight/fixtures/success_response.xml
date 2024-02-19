@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cResultado xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://tempuri.org/">
+  <Servicos>
+    <cServico>
+      <Codigo>9999</Codigo>
+      <Valor>20,87</Valor>
+      <PrazoEntrega>1</PrazoEntrega>
+      <ValorMaoPropria>0,00</ValorMaoPropria>
+      <ValorAvisoRecebimento>0,00</ValorAvisoRecebimento>
+      <ValorValorDeclarado>0,79</ValorValorDeclarado>
+      <EntregaDomiciliar>S</EntregaDomiciliar>
+      <EntregaSabado>N</EntregaSabado>
+      <Erro>0</Erro>
+      <MsgErro />
+      <ValorSemAdicionais>20,08</ValorSemAdicionais>
+      <obsFim />
+    </cServico>
+  </Servicos>
+</cResultado>
