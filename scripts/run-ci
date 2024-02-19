@@ -1,0 +1,62 @@
+#!/bin/bash
+
+set -e
+
+BOLD='\e[1m'
+BG_RED='\033[41m'
+BG_BLUE='\033[44m'
+TC_WHITE='\e[;0;37m'
+NC='\e[;0m' # No Color
+
+function cprint() {
+  bg_color=$2
+  text="  $1"
+  text_length=$(expr length "$text")
+  cols=$(expr $(tput cols) - $text_length)
+  spaces=$(for ((i=0; i<cols; i++));do printf " "; done; echo)
+
+  echo -e "${TC_WHITE}${bg_color}${text}${spaces}${NC}"
+  echo -e "..."
+}
+
+cprint "[CI] Running CI steps/jobs" $BG_BLUE
+
+function run_compile_checks() {
+  cprint "[CI] re-compiling and compile checks" $BG_BLUE
+  mix clean
+  mix compile --warnings-as-errors
+}
+
+function run_format_check() {
+  cprint "[CI] Running format check" $BG_BLUE
+  # mix format
+  # real ci command:
+  mix format --check-formatted
+}
+
+function run_type_check() {
+  cprint "[CI] Running type-checking w/ Dialyzer" $BG_BLUE
+  mix dialyzer --quiet --no-compile
+}
+
+function run_lint() {
+  cprint "[CI] Running lint" $BG_BLUE
+  mix credo --strict
+}
+
+
+function run_tests() {
+  cprint "[CI] Running test" $BG_BLUE
+  mix test
+}
+
+run_compile_checks &&
+  run_format_check &&
+  run_type_check &&
+  run_lint &&
+  run_tests
+
+if [ $? -ne 0 ]; then
+ cprint "[CI] Failed" $BG_RED
+ exit 1
+fi
